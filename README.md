@@ -1,4 +1,4 @@
-<p><img src="docs/images/mireya-title.png" alt="Mireya Title" width="900px" /></p>
+<p><img src="docs/images/mireya-title.png" alt="Mireya Title" width="100%" /></p>
 
 <p>Mireya is a beginner-friendly framework that will allow you to learn the basics of Transformers.</p>
 
@@ -118,7 +118,7 @@
     </ol>
 </p>
 
-<p><img src="docs/images/subtitle-table-content.png" alt="Content" height="50px" /></p>
+<p><img src="docs/images/subtitle-content.png" alt="Content" height="50px" style="margin: 10px 0px" /></p>
 
 - [Description](#description)
 - [Installation](#installation)
@@ -169,7 +169,7 @@ if __name__ == "__main__":
 
 <p>To run this example, you need to go to the root folder of the project with the command prompt and run the following command:</p>
 
-<p><img src="docs/images/console-example.png" alt="CMD Console Example" width="70%" style="margin: 10px 0px" /></p>
+<p><img src="docs/images/console-example.png" alt="CMD Console Example" width="100%" style="margin: 10px 0px" /></p>
 
 <p>The translator will train the transformer with 4 Spanish phrases to be translated into English:</p>
 
@@ -196,11 +196,11 @@ if __name__ == "__main__":
     </li>
 </ol>
 
-<p><img src="docs/images/console-example-training.png" alt="CMD Console Training" width="70%" style="margin: 10px 0px" /></p>
+<p><img src="docs/images/console-example-training.png" alt="CMD Console Training" width="100%" style="margin: 10px 0px" /></p>
 
 <p>Finally, the phrases previously selected in the training are translated:</p>
 
-<p><img src="docs/images/console-example-result.png" alt="CMD Console Result" width="70%" style="margin: 10px 0px" /></p>
+<p><img src="docs/images/console-example-result.png" alt="CMD Console Result" width="100%" style="margin: 10px 0px" /></p>
 
 <p><img src="docs/images/subtitle-license.png" alt="License" id="license" height="50px" style="margin: 20px 0px" /></p>
 
