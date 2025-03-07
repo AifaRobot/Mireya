@@ -77,29 +77,29 @@
     It allows the model to handle sequences of variable length as it knows when to terminate without relying on a fixed length.
 '''
 
-# Dictionary of Spanish words. Each word is a number that will be used to generate a token
+'''Dictionary of Spanish words. Each word is a number that will be used to generate a token'''
 spanish_words = {
     '<PAD>': 0, '<SOS>': 1, '<EOS>': 2, 'hola': 3, 'mundo': 4, 'cuantos': 5, 'años': 6 , 'tienes': 7, 'tu': 8, 'quien': 9, 'eres': 10, 'como': 11, 'estas': 12
 }
 
-# Dictionary of English words. Each word is a number that will be used to generate a token
+'''Dictionary of English words. Each word is a number that will be used to generate a token'''
 english_words = {
     '<PAD>': 0, '<SOS>': 1, '<EOS>': 2, 'hello': 3, 'world': 4, 'how': 5, 'old': 6, 'are': 7, 'you': 8, 'who': 9
 }
 
-# Dictionary with sentences that will be used to train the model to translate from Spanish to English. Each element has a sentence in it
-# base language (Spanish) and its equivalent in the target language (English). The sentences are made up of the numbers that represent the
-# words
+'''Dictionary with sentences that will be used to train the model to translate from Spanish to English. Each element 
+has a sentence in it base language (Spanish) and its equivalent in the target language (English). The sentences are 
+made up of the numbers that represent the words'''
 sentences = [{
-    'spanish': [[3, 4, 0, 0, 0, 0]], # hola mundo
-    'english': [[1, 3, 4, 2, 0, 0]] # hello world
+    'input': [[3, 4, 0, 0, 0, 0]], # hola mundo
+    'output': [[1, 3, 4, 2, 0, 0]] # hello world
 }, {
-    'spanish': [[5, 6, 7, 0, 0, 0]], # cuantos años tienes
-    'english': [[1, 5, 6, 7, 8, 2]] # how old are you
+    'input': [[5, 6, 7, 0, 0, 0]], # cuantos años tienes
+    'output': [[1, 5, 6, 7, 8, 2]] # how old are you
 }, {
-    'spanish': [[9, 10, 8, 0, 0, 0]], # quien eres tu
-    'english': [[1, 9, 7, 8, 2, 0]] # who are you
+    'input': [[9, 10, 8, 0, 0, 0]], # quien eres tu
+    'output': [[1, 9, 7, 8, 2, 0]] # who are you
 }, {
-    'spanish': [[11, 12, 0, 0, 0, 0]], # como estas
-    'english': [[1, 5, 7, 8, 2, 0]] # how are you
+    'input': [[11, 12, 0, 0, 0, 0]], # como estas
+    'output': [[1, 5, 7, 8, 2, 0]] # how are you
 }]
