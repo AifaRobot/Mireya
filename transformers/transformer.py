@@ -1,4 +1,5 @@
 import torch
+import os
 from abc import ABC, abstractmethod
 from .components.utils import Memory
 
@@ -48,20 +49,20 @@ class Stack(torch.nn.Module):
 
     def forward(
         self,
-        encoder=None,
-        decoder=None,
-        encoder_mask=None,
-        decoder_mask=None,
-        generate_encoder_mask=True,
-        generate_decoder_mask=True,
+        encoder = None,
+        decoder = None,
+        encoder_mask = None,
+        decoder_mask = None,
+        generate_encoder_mask = True,
+        generate_decoder_mask = True,
     ):
         memory = Memory(
-            encoder=encoder,
-            decoder=decoder,
-            encoder_mask=encoder_mask,
-            decoder_mask=decoder_mask,
-            generate_encoder_mask=generate_encoder_mask,
-            generate_decoder_mask=generate_decoder_mask,
+            encoder = encoder,
+            decoder = decoder,
+            encoder_mask = encoder_mask,
+            decoder_mask = decoder_mask,
+            generate_encoder_mask = generate_encoder_mask,
+            generate_decoder_mask = generate_decoder_mask,
         )
 
         memory.set_stack(self.stack)
@@ -90,3 +91,28 @@ class Stack(torch.nn.Module):
             parameters += list(component.parameters())
 
         return parameters
+
+    def save(self, save_path):
+        print('Saving weights...')
+
+        weights = {f'component_{i}': component.state_dict() for i, component in enumerate(self.components)}
+
+        if (os.path.exists(save_path) == False):
+            os.mkdir(save_path)
+
+        torch.save(weights, save_path + '/' + self.stack + '.pth')
+
+        print('The weights has been saved')
+
+    def load(self, save_path):
+        print('Loading weights...')
+
+        if(os.path.isfile(save_path + '/' + self.stack + '.pth')):
+            weights = torch.load(save_path + '/' + self.stack + '.pth')
+
+            for i, component in enumerate(self.components):
+                component.load_state_dict(weights[f'component_{i}'])
+
+            print('The weights has been loaded')
+        else:
+            print('The path "' + save_path + '/' + self.stack + '.pth" was not found')

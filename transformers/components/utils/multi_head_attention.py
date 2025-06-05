@@ -36,7 +36,7 @@ class MultiHeadAttention(nn.Module):
         
         """It serves to mask certain positions in the attention_scores matrix. This ensures that the model
         ignore or penalize certain positions during attention calculation.
-        For example, in text processing tasks, positions that correspond to filler tokens (<PAD>) are often masked"""
+        For example, in text processing tasks, positions that correspond to filler tokens (<pad>) are often masked"""
         if mask is not None:
             attention_scores = attention_scores.masked_fill(mask == 0, -1e9)
 

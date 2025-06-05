@@ -1,4 +1,37 @@
 import torch
+import matplotlib.pyplot as plt
+import numpy as np
+import json
+
+def draw_plot(history, xlabel, ylabel, save_path):
+    new_array = [
+        np.array(history[max(0, i - 100):i + 1]).mean()
+        for i in range(len(history))
+    ]
+
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.plot(new_array, "red")
+    plt.title(ylabel)
+    plt.savefig(save_path + '/' + ylabel + '.png')
+    plt.close()
+
+def open_jsonl_file(path_file):
+    data = []
+    
+    with open(path_file, "r", encoding="utf-8") as f:
+        for line in f:
+            data.append(json.loads(line))
+
+    return data
+
+def parse_jsonl_data_to_dict(tokens_jsonl):
+    dict = {}
+
+    for word in tokens_jsonl:
+        dict[word['word']] = word['id']
+    
+    return dict
 
 def generate_causal_mask(input):
     
@@ -33,7 +66,7 @@ def generate_causal_mask(input):
 
     The purpose of the nopeal_mask is to ensure that a token at position i can only "see" previous tokens (or itself) and
     not future ones."""
-    nopeak_mask = (1 - torch.triu(torch.ones(1, sequence_length, sequence_length), diagonal=1)).bool()
+    nopeak_mask = (1 - torch.triu(torch.ones(1, sequence_length, sequence_length), diagonal=1)).bool().to(input_mask.device)
     
     """Combine the fill mask (output_mask) and the causal mask (nopeak_mask) using a logical "AND" operation.
 
